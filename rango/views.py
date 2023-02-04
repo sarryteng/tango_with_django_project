@@ -28,7 +28,11 @@ def index(request):
     return render(request, 'rango/index.html', context=context_dict)
 
 def about(request):
-    return render(request, 'rango/about.html')
+    # prints out whether the method is a GET or a POST
+    print(request.method)
+    # prints out the user name, if no one is logged in it prints `AnonymousUser`
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 def show_category(request, category_name_slug):
     # Create a context dictionary which we can pass to the template rendering engine.
@@ -45,7 +49,7 @@ def show_category(request, category_name_slug):
         context_dict['category'] = None
         context_dict['pages'] = None
     
-        return render(request, 'rango/category.html', context=context_dict)
+    return render(request, 'rango/category.html', context=context_dict)
 
 def add_category(request):
     form = CategoryForm()
